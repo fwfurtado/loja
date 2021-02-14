@@ -8,8 +8,12 @@ class AddProduct:
         self.__quantity = quantity
 
     @property
-    def name(self) -> Product:
-        return self.__product
+    def name(self) -> str:
+        return self.__product.name
+
+    @property
+    def value(self) -> float:
+        return self.__product.value
 
     @property
     def quantity(self) -> int:
