@@ -1,5 +1,5 @@
 # Data Access Object
-from typing import List, Dict, Optional
+from typing import Dict, Optional
 
 from src.loja.models.customer import Customer
 
@@ -7,12 +7,12 @@ from src.loja.models.customer import Customer
 class CustomerDAO:
 
     __DATABASE = dict()
-    __INDENTITY = 0
+    __IDENTITY = 0
 
     def persist(self, customer: Customer):
-        CustomerDAO.__INDENTITY += 1
+        CustomerDAO.__IDENTITY += 1
 
-        CustomerDAO.__DATABASE[CustomerDAO.__INDENTITY] = customer
+        CustomerDAO.__DATABASE[CustomerDAO.__IDENTITY] = customer
 
     def find_all(self) -> Dict[int, Customer]:
         return CustomerDAO.__DATABASE

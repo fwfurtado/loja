@@ -11,3 +11,5 @@ class Product:
     @property
     def value(self) -> float:
         return self.__value
+    def __str__(self):
+        return f"Product({self.name,self.value})"
