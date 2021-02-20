@@ -1,5 +1,5 @@
 import factory
-from loja.models.product import Product
+from src.loja.models.product import Product
 
 
 class ProductFactory(factory.Factory):
