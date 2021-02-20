@@ -10,6 +10,7 @@ class CustomerDAO:
     __IDENTITY = 0
 
     def persist(self, customer: Customer):
+
         CustomerDAO.__IDENTITY += 1
 
         CustomerDAO.__DATABASE[CustomerDAO.__IDENTITY] = customer
@@ -22,3 +23,4 @@ class CustomerDAO:
 
     def remove(self, id: int):
         del CustomerDAO.__DATABASE[id]
+
