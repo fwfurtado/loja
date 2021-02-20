@@ -7,6 +7,6 @@ class ProductFactory(factory.Factory):
         model = Product
 
     name = factory.Faker('name')
-    price = factory.Faker('pyfloat')
+    price = factory.Faker('pyfloat',positive=True)
     photo = factory.Faker('image_url')
     description = factory.Faker('paragraph')

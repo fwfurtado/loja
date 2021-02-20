@@ -17,4 +17,7 @@ class TestProductDAO:
         read_product = dao.find_one(1)
 
         assert product.name == read_product.name
-        assert product.value == read_product.value
+        assert product.price == read_product.price
+        assert product.photo == read_product.photo
+        assert product.description == read_product.description
+
