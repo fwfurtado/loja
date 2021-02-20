@@ -1,5 +1,5 @@
 from src.loja.models.product import Product #a confirmar
-from src.loja.repositories.customer_dao import ProductDAO #a confirmar
+from src.loja.repositories.product_dao import ProductDAO #a confirmar
 
 class ProductsController:
 

@@ -8,7 +8,7 @@ class TestProductsController:
 
     @pytest.fixture()
     def mock_dao(self):
-        return MagicMock
+        return MagicMock()
 
     def test_should_create_a_new_product(self,mock_dao):
         name = "T-shirt"
@@ -21,7 +21,7 @@ class TestProductsController:
         controller.new_product(name,price,photo,description)
 
         assert mock_dao.persist.called
-        given_product = mock_dao.persist.call_args.args[0]
+        given_product = mock_dao.persist.call_args[0][0]
 
         assert given_product.name == name
         assert given_product.price == price
