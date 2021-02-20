@@ -1,11 +1,11 @@
 from src.loja.models.stock import Stock
 from src.loja.models.product import Product
-from src.loja.repositories.stock_dao import AddProductDAO
+from src.loja.repositories.stock_dao import StockDAO
 
 
 class StockController:
 
-    def __init__(self, dao: AddProductDAO):
+    def __init__(self, dao: StockDAO):
         self.dao = dao
 
     def new_product(self, product: Product, quantity: int):

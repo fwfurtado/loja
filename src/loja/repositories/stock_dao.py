@@ -8,14 +8,14 @@ class StockDAO:
     __IDENTITY = 0
 
     def persist(self, product: Stock):
-        AddProductDAO.__IDENTITY += 1
-        AddProductDAO.__DATABASE[AddProductDAO.__IDENTITY] = product
+        StockDAO.__IDENTITY += 1
+        StockDAO.__DATABASE[StockDAO.__IDENTITY] = product
 
     def find_all(self) -> Dict[int, Stock]:
-        return AddProductDAO.__DATABASE
+        return StockDAO.__DATABASE
 
     def find_one(self, id: int) -> Optional[Stock]:
-        return AddProductDAO.__DATABASE.get(id, None)
+        return StockDAO.__DATABASE.get(id, None)
 
     def remove(self, id: int):
-        del AddProductDAO.__DATABASE[id]
+        del StockDAO.__DATABASE[id]
