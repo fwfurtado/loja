@@ -10,11 +10,11 @@ class ProductsController:
         product = Product(name,price,photo,description)
         self.dao.persist(product)
 
-    def list(self):
+    def list(self): #lista dos produtos já cadastrados
         return self.dao.find_all()
 
-    def show(self):
-        return self.dao.find_one(name) #vai colocar id ou só o nome?
+    def show(self,id:int):
+        return self.dao.find_one(id)
 
-    def remoce(self):
-        return self.dao.remove(name)
+    def remove(self,id:int):
+        return self.dao.remove(id)

@@ -3,6 +3,9 @@ import pytest
 
 from src.loja.controllers.products_controller import ProductsController
 
+#from tests.loja.factories.product_controller_factory import ProductControllerFactory
+
+
 class TestProductsController:
 
     @pytest.fixture()
@@ -26,3 +29,7 @@ class TestProductsController:
         assert given_product.price == price
         assert given_product.photo == photo
         assert given_product.description == description
+
+    #    t_shirt = ProductControllerFactory.create(price=15)
+    #    with pytest.raises(ValueError):
+    #        ProductsController(t_shirt.name, -1, t_shirt.photo, t_shirt.description)
