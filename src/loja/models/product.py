@@ -27,5 +27,3 @@ class Product:
 
     def __str__(self):
         return f"Product({self.name,self.price,self.photo,self.description})"
-
-

@@ -1,7 +1,6 @@
 import factory
 from src.loja.models.product import Product
 
-
 class ProductFactory(factory.Factory):
     class Meta:
         model = Product
