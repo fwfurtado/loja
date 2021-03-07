@@ -7,6 +7,8 @@ from src.loja.converters.address import AddressConverter
 
 from tests.loja.factories.customer_factory import CustomerFactory
 
+from tests.loja.factories.address import AddressDTOFactory
+
 
 class TestCustomerController:
 
@@ -51,5 +53,13 @@ class TestCustomerController:
         controller.add_address(1,address_form)
 
         assert len(customer.addresses) == 1
+
+        customer_address = customer.addresses[0]
+        assert customer_address.street == address_form.street
+        assert customer_address.number == address_form.number
+        assert customer_address.zip_code == address_form.zip_code
+        assert customer_address.complement == address_form.complement
+
+
 
         
