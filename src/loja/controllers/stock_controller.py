@@ -20,3 +20,7 @@ class StockController:
 
     def remove(self, id: int):
         return self.dao.remove(id)
+
+    def withdraw(self, id: int, amount: int):
+        stock = self.dao.find_one(id)
+        stock.remove(amount)

@@ -6,9 +6,9 @@ from loja.models.product import Product
 from src.loja.controllers.stock_controller import StockController
 
 from tests.loja.factories.product_factory import ProductFactory
+from tests.loja.factories.stock import StockFactory
 
-
-class TestAddProductController:
+class TestStockController:
 
     @pytest.fixture()
     def mock_dao(self):
@@ -18,7 +18,7 @@ class TestAddProductController:
     def controller(self, mock_dao):
         return StockController(dao=mock_dao)
 
-    def test_should_create_an_add_product(self, mock_dao):
+    def test_should_create_a_stock(self, mock_dao):
         product = ProductFactory.create()
         quantity = randint(1, 10)
 
@@ -36,11 +36,11 @@ class TestAddProductController:
         assert len(controller.list()) == 0
         assert mock_dao.find_all.called
 
-    def test_should_return_a_filled_list(self, controller, mock_dao):
-        size = randint(0, 500)
-        list_of_customer = ProductFactory.create_batch(size)
+    def test_should_decrease_quantity_stock(self, controller, mock_dao):
+        amount = randint(1, 10)
+        stock = StockFactory.create(quantity=amount)
 
-        mock_dao.find_all.return_value = list_of_customer
+        mock_dao.find_one.return_value = stock
 
-        assert len(controller.list()) == size
-        assert mock_dao.find_all.called
+        controller.withdraw(1, amount-1)
+        assert stock.quantity == 1
