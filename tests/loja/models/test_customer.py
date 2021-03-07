@@ -1,7 +1,7 @@
 import pytest
-from loja.models.product import Product
 
-from tests.loja.factories.product_factory import ProductFactory
+from tests.loja.factories.address_factory import AddressFactory
+from tests.loja.factories.customer_factory import CustomerFactory
 
 
 class TestCustomer:

@@ -7,6 +7,6 @@ class AddressFactory(factory.Factory):
         model = Address
 
     street = factory.Faker('street_name')
-    number = factory.Faker('pyint',positive=True)
+    number = factory.Faker('pyint', min_value=1)
     zip_code = factory.Faker('postcode')
     complement = factory.Faker('text')

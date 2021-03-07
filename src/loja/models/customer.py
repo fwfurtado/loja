@@ -1,4 +1,5 @@
 from src.loja.models.address import Address
+from typing import List
 
 
 class Customer:
