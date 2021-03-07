@@ -1,4 +1,5 @@
 from datetime import date
+from enum import Enum
 
 from src.loja.models.customer import Customer
 from src.loja.models.order_item import OrderItem
@@ -10,6 +11,7 @@ class Order:
         self.__customer = customer
         self.__created_at = date.today()
         self.__items = []
+        self.__status = OrderStatus.PENDING
 
     def add_item(self, item: OrderItem):
         self.__items.append(item)
@@ -25,3 +27,15 @@ class Order:
     @property
     def total(self) -> float:
         return sum([item.total for item in self.__items])
+
+
+class OrderStatus(Enum):
+    PENDING = 'PENDING'
+    PAID = 'PAID'
+    SENT = 'SENT'
+    RECEIVED = 'RECEIVED'
+    CANCELLED = 'CANCELLED'
+
+
+
+

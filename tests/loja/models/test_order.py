@@ -3,6 +3,8 @@ from loja.models.order import Order
 from loja.models.order_item import OrderItem
 from loja.models.product import Product
 
+from src.loja.models.order import OrderStatus
+from tests.loja.factories.order import OrderFactory
 from tests.loja.factories.product_factory import ProductFactory
 
 
@@ -20,3 +22,9 @@ class TestOrder:
         order.add_item(OrderItem(shorts, 1))
 
         assert order.total == 55
+
+    def test_should_have_default_values(self):
+        order = OrderFactory.create()
+
+        assert len(order.items) == 0
+        assert order.status == OrderStatus.PENDING
