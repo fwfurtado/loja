@@ -2,12 +2,14 @@ from loja.models.stock import Stock
 from loja.models.product import Product
 from loja.repositories.stock_dao import StockDAO
 
+from tests.loja.factories.product_factory import ProductFactory
+
 
 class TestAddProductDAO:
 
     def test_should_increment_length(self):
         dao = StockDAO()
-        product = Product("shorts", 15)
+        product = ProductFactory.create()
         add = Stock(product, 10)
 
         assert len(dao.find_all()) == 0

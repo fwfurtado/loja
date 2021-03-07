@@ -12,8 +12,8 @@ class TestOrder:
 
     def test_should_compute_total_from_items(self):
 
-        t_shirt = ProductFactory.create(value=15)
-        shorts = ProductFactory.create(value=25)
+        t_shirt = ProductFactory.create(price=15)
+        shorts = ProductFactory.create(price=25)
 
         customer = Customer("Fernando", "12341234")
         order = Order(customer)

@@ -5,7 +5,7 @@ class OrderItem:
 
     def __init__(self, product: Product, quantity: int):
         self.__product = product
-        self.__amount = product.value
+        self.__amount = product.price
         self.__quantity = quantity
 
     @property

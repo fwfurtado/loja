@@ -1,6 +1,6 @@
 import pytest
 
-from tests.loja.factories.address_factory import AddressFactory
+from tests.loja.factories.address import AddressFactory
 from tests.loja.factories.customer_factory import CustomerFactory
 
 

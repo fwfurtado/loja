@@ -1,8 +1,17 @@
 from datetime import date
 from enum import Enum
+from typing import List
 
 from src.loja.models.customer import Customer
 from src.loja.models.order_item import OrderItem
+
+
+class OrderStatus(Enum):
+    PENDING = 'PENDING'
+    PAID = 'PAID'
+    SENT = 'SENT'
+    RECEIVED = 'RECEIVED'
+    CANCELLED = 'CANCELLED'
 
 
 class Order:
@@ -28,14 +37,10 @@ class Order:
     def total(self) -> float:
         return sum([item.total for item in self.__items])
 
+    @property
+    def items(self) -> List[OrderItem]:
+        return self.__items
 
-class OrderStatus(Enum):
-    PENDING = 'PENDING'
-    PAID = 'PAID'
-    SENT = 'SENT'
-    RECEIVED = 'RECEIVED'
-    CANCELLED = 'CANCELLED'
-
-
-
-
+    @property
+    def status(self) -> OrderStatus:
+        return self.__status
