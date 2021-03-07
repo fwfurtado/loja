@@ -15,3 +15,12 @@ class Stock:
     @property
     def quantity(self) -> int:
         return self.__quantity
+
+    def remove(self, amount: int):
+        if amount > self.__quantity:
+            raise ValueError("Quantidade maior do que há no estoque")
+        self.__quantity -= amount
+
+
+
+
