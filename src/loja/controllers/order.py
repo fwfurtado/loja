@@ -1,21 +1,18 @@
 from src.loja.models.order import Order
 from src.loja.repositories.order import OrderDAO
-from src.loja.dtos.address import OrderDTO
+from src.loja.dtos.order import OrderDTO
+from src.loja.converters.order import OrderConverter
 
 
 class OrderController:
 
-    def __init__(self, dao: OrderDAO):
+    def __init__(self, dao: OrderDAO, converter: OrderConverter):
         self.dao = dao
+        self.converter = converter
 
     def new_order(self, form: OrderDTO):
-        order = Order()
+        order = self.converter.convert(form)
         self.dao.persist(order)
-
-    def add_address(self, customer_id: int, form: AddressDTO):  # usamos form de formulario
-        customer = self.dao.find_one(customer_id)
-        address = self.address_converter.convert(form)
-        customer.add_address(address)
 
     def list(self):
         return self.dao.find_all()

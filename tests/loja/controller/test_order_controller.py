@@ -29,17 +29,28 @@ class TestOrderController:
         return OrderConverter(customer_dao, product_dao)
 
     @pytest.fixture()
-    def controller(self, order_dao):
-        return OrderController(dao=order_dao)
+    def controller(self, order_dao, converter):
+        return OrderController(dao=order_dao, converter=converter)
 
-    def test_should_create_an_order(self, controller, order_dao):
+    def test_should_create_an_order(self, controller, order_dao, product_dao, customer_dao):
         product = ProductFactory.create()
         customer = CustomerFactory.create()
+        product_dao.find_one.return_value = product
+        customer_dao.find_one.return_value = customer
 
         form = OrderDTOFactory.create()
+        form.customer_id = customer.id
+        form.items[0].product_id = product.id
 
         controller.new_order(form)
 
         assert order_dao.persist.called
 
-        given_order = order_dao.persist.call_args.args[0]
+        given_order = order_dao.persist.call_args[0][0]
+
+        assert form.customer_id == given_order.customer.id
+        assert len(form.items) == len(given_order.items)
+
+        for form_item, order_item in zip(form.items, given_order.items):
+            assert form_item.quantity == order_item.quantity
+            assert form_item.product_id == order_item.product_id

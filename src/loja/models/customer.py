@@ -4,11 +4,11 @@ from typing import List
 
 class Customer:
 
-    def __init__(self, name: str, social_number: str):
+    def __init__(self, name: str, social_number: str, id: int=None):
         self.__name = name
         self.__social_number = social_number
         self.__addresses = []
-        self.id = None
+        self.id = id
 
     @property
     def name(self) -> str:

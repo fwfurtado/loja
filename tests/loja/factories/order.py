@@ -2,7 +2,7 @@ import factory
 from src.loja.models.order import Order
 from tests.loja.factories.customer import CustomerFactory
 from tests.loja.factories.order_item import OrderItemFactory, OrderItemDTOFactory
-from tests.loja.dtos.order import OrderDTO
+from src.loja.dtos.order import OrderDTO
 from factory import lazy_attribute, SubFactory
 from factory.fuzzy import FuzzyInteger
 
@@ -22,6 +22,9 @@ class OrderFactory(factory.Factory):
 class OrderDTOFactory(factory.Factory):
     class Meta:
         model = OrderDTO
+
+    class Params:  # parameters
+        item_params = {}
 
     customer_id = FuzzyInteger(low=1, high=10)
 

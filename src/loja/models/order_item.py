@@ -21,5 +21,10 @@ class OrderItem:
         return self.__product.name
 
     @property
+    def product_id(self) -> int:
+        return self.__product.id
+
+    @property
     def total(self) -> float:
         return self.__amount * self.__quantity
+
