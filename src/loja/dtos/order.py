@@ -11,4 +11,4 @@ class OrderItemDTO:
 @dataclass
 class OrderDTO:
     customer_id: int
-    items: List[OrderDTO]
+    items: List[OrderItemDTO]

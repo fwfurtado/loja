@@ -10,7 +10,7 @@ class OrderController:
 
     def new_order(self, form: OrderDTO):
         order = Order()
-        self.dao.persist(customer)
+        self.dao.persist(order)
 
     def add_address(self, customer_id: int, form: AddressDTO):  # usamos form de formulario
         customer = self.dao.find_one(customer_id)
