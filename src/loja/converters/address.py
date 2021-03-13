@@ -1,4 +1,4 @@
-from src.loja.dtos.address_dto import AddressDTO
+from src.loja.dtos.address import AddressDTO
 from src.loja.models.address import Address
 
 

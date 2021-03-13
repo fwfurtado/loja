@@ -1,6 +1,6 @@
 from src.loja.models.stock import Stock
 from src.loja.models.product import Product
-from src.loja.repositories.stock_dao import StockDAO
+from src.loja.repositories.stock import StockDAO
 
 
 class StockController:

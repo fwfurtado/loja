@@ -1,5 +1,5 @@
 import factory
-from loja.dtos.address_dto import AddressDTO
+from loja.dtos.address import AddressDTO
 from src.loja.models.address import Address
 
 

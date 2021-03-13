@@ -2,10 +2,10 @@ from unittest.mock import MagicMock
 
 import pytest
 import random
-from src.loja.controllers.customer_controller import CustomerController
+from src.loja.controllers.customer import CustomerController
 from src.loja.converters.address import AddressConverter
 
-from tests.loja.factories.customer_factory import CustomerFactory
+from tests.loja.factories.customer import CustomerFactory
 
 from tests.loja.factories.address import AddressDTOFactory
 

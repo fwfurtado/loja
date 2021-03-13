@@ -11,7 +11,7 @@ class CustomerDAO:
 
     def persist(self, customer: Customer):
         CustomerDAO.__IDENTITY += 1
-
+        customer.id = CustomerDAO.__IDENTITY
         CustomerDAO.__DATABASE[CustomerDAO.__IDENTITY] = customer
 
     def find_all(self) -> Dict[int, Customer]:
