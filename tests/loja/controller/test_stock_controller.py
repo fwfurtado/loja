@@ -3,9 +3,9 @@ from unittest.mock import MagicMock
 
 import pytest
 from loja.models.product import Product
-from src.loja.controllers.stock_controller import StockController
+from src.loja.controllers.stock import StockController
 
-from tests.loja.factories.product_factory import ProductFactory
+from tests.loja.factories.product import ProductFactory
 from tests.loja.factories.stock import StockFactory
 
 class TestStockController:

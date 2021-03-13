@@ -1,8 +1,8 @@
 from src.loja.dtos.order import OrderDTO, OrderItemDTO
 from src.loja.models.order import Order
 from src.loja.models.order_item import OrderItem
-from src.loja.repositories.customer_dao import CustomerDAO
-from src.loja.repositories.product_dao import ProductDAO
+from src.loja.repositories.customer import CustomerDAO
+from src.loja.repositories.product import ProductDAO
 
 
 class OrderConverter:

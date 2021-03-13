@@ -5,7 +5,7 @@ from loja.models.product import Product
 
 from src.loja.models.order import OrderStatus
 from tests.loja.factories.order import OrderFactory
-from tests.loja.factories.product_factory import ProductFactory
+from tests.loja.factories.product import ProductFactory
 
 
 class TestOrder:

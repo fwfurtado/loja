@@ -1,6 +1,6 @@
 from src.loja.models.customer import Customer
-from src.loja.repositories.customer_dao import CustomerDAO
-from src.loja.dtos.address_dto import AddressDTO
+from src.loja.repositories.customer import CustomerDAO
+from src.loja.dtos.address import AddressDTO
 from src.loja.converters.address import AddressConverter
 
 

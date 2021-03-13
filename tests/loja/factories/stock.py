@@ -1,6 +1,6 @@
 import factory
 from src.loja.models.stock import Stock
-from tests.loja.factories.product_factory import ProductFactory
+from tests.loja.factories.product import ProductFactory
 
 
 class StockFactory(factory.Factory):

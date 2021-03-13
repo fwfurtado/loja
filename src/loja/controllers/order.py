@@ -1,6 +1,6 @@
 from src.loja.models.order import Order
 from src.loja.repositories.order import OrderDAO
-from src.loja.dtos.address_dto import OrderDTO
+from src.loja.dtos.address import OrderDTO
 
 
 class OrderController:
