@@ -7,6 +7,7 @@ class Product:
         self.__price = price
         self.__photo = photo
         self.__description = description
+        self.id = None
 
     @property
     def name(self) -> str:

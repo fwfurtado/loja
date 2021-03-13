@@ -8,7 +8,7 @@ class ProductDAO: # Criando a rotina que faz a interface para gravar dados no ba
 
     def persist(self, product: Product): # Gravar alguma informação no banco de dados
         ProductDAO.__IDENTITY += 1 # Acrescentar um ID novo
-
+        product.id = ProductDAO.__IDENTITY
         ProductDAO.__DATABASE[ProductDAO.__IDENTITY] = product # PAssando a informação para o banco de dados
 
     def find_all(self) -> Dict[int, Product]: # Listar tudo que foi gravado

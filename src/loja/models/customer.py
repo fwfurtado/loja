@@ -8,6 +8,7 @@ class Customer:
         self.__name = name
         self.__social_number = social_number
         self.__addresses = []
+        self.id = None
 
     @property
     def name(self) -> str:
@@ -23,3 +24,5 @@ class Customer:
     @property
     def addresses(self) -> List[Address]:
         return self.__addresses
+
+
