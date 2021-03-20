@@ -2,12 +2,14 @@ from unittest.mock import MagicMock
 
 import pytest
 import random
+from src.loja.models.order import OrderStatus
 from src.loja.controllers.order import OrderController
 from src.loja.converters.order import OrderConverter
 
 from tests.loja.factories.customer import CustomerFactory
-from tests.loja.factories.order import OrderDTOFactory
+from tests.loja.factories.order import OrderDTOFactory, OrderFactory
 from tests.loja.factories.product import ProductFactory
+
 
 
 class TestOrderController:
@@ -19,6 +21,7 @@ class TestOrderController:
     @pytest.fixture()
     def product_dao(self):
         return MagicMock()
+
 
     @pytest.fixture()
     def customer_dao(self):
@@ -54,3 +57,11 @@ class TestOrderController:
         for form_item, order_item in zip(form.items, given_order.items):
             assert form_item.quantity == order_item.quantity
             assert form_item.product_id == order_item.product_id
+
+    def test_update_status_to_paid(self, controller, order_dao):
+        order = OrderFactory.create()
+        order_dao.find_one.return_value = order
+
+        controller.paid(order.id)
+        assert order.status == OrderStatus.PAID
+        assert order_dao.find_one.called
