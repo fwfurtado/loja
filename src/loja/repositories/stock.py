@@ -2,8 +2,8 @@
 from typing import Dict, Optional
 from src.loja.models.stock import Stock
 
-class StockDAO:
 
+class StockDAO:
     __DATABASE = dict()
     __IDENTITY = 0
 

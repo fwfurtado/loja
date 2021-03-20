@@ -16,14 +16,20 @@ class OrderStatus(Enum):
 
 class Order:
 
-    def __init__(self, customer: Customer):
+    def __init__(self, customer: Customer, id: int = None):
         self.__customer = customer
         self.__created_at = date.today()
         self.__items = []
         self.__status = OrderStatus.PENDING
+        self.id = id
 
     def add_item(self, item: OrderItem):
         self.__items.append(item)
+
+    def update_status_paid(self):
+        if self.__status != OrderStatus.PENDING:
+            raise ValueError("Atualização inválida. Situação do pedido diferente de PENDENTE")
+        self.__status = OrderStatus.PAID
 
     @property
     def customer(self) -> Customer:
