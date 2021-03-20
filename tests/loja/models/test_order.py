@@ -1,3 +1,4 @@
+import pytest
 from src.loja.models.customer import Customer
 from src.loja.models.order import Order
 from src.loja.models.order import OrderStatus
@@ -9,7 +10,6 @@ from tests.loja.factories.product import ProductFactory
 class TestOrder:
 
     def test_should_compute_total_from_items(self):
-
         t_shirt = ProductFactory.create(price=15)
         shorts = ProductFactory.create(price=25)
 
@@ -31,5 +31,16 @@ class TestOrder:
         order = OrderFactory.create()
         assert order.status == OrderStatus.PENDING
 
-        order.paid()
-        assert order.status == OrderStatus.PAID
+        order = OrderFactory.create(status=OrderStatus.SENT)
+
+        with pytest.raises(ValueError):
+            order.paid()
+
+    def test_should_return_status_sent(self):
+        order = OrderFactory.create(status=OrderStatus.PAID)
+        order.sent()
+
+        assert order.status == OrderStatus.SENT
+
+        with pytest.raises(ValueError):
+            order.sent()
