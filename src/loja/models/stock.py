@@ -1,5 +1,6 @@
 from src.loja.models.product import Product
 
+
 class Stock:
 
     def __init__(self, product: Product, quantity: int):
@@ -20,7 +21,3 @@ class Stock:
         if amount > self.__quantity:
             raise ValueError("Quantidade maior do que há no estoque")
         self.__quantity -= amount
-
-
-
-

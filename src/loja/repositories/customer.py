@@ -5,7 +5,6 @@ from src.loja.models.customer import Customer
 
 
 class CustomerDAO:
-
     __DATABASE = dict()
     __IDENTITY = 0
 

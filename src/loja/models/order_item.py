@@ -27,4 +27,3 @@ class OrderItem:
     @property
     def total(self) -> float:
         return self.__amount * self.__quantity
-

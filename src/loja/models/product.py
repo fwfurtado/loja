@@ -1,6 +1,6 @@
 class Product:
 
-    def __init__(self, name: str, price: float, photo: str, description: str, id: int=None):
+    def __init__(self, name: str, price: float, photo: str, description: str, id: int = None):
         if price <= 0:
             raise ValueError("Preço deve ser maior que zero")
         self.__name = name
@@ -19,7 +19,6 @@ class Product:
 
     @property
     def photo(self) -> str:
-
         return self.__photo
 
     @property
@@ -27,4 +26,4 @@ class Product:
         return self.__description
 
     def __str__(self):
-        return f"Product({self.name,self.price,self.photo,self.description})"
+        return f"Product({self.name, self.price, self.photo, self.description})"

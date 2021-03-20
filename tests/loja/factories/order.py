@@ -12,11 +12,12 @@ class OrderFactory(factory.Factory):
         model = Order
 
     customer = factory.SubFactory(CustomerFactory)
+    id = FuzzyInteger(low=1, high=10)
 
     # Metodo que servira como uma estrategia para que seja possivel criar uma lista, pois nao é possivel fazer lista com SubFactory
-    @lazy_attribute
-    def items(self):
-        return OrderItemFactory.create_batch(size=1)
+    #@lazy_attribute
+    #def items(self):
+    #    return OrderItemFactory.create_batch(size=1)
 
 
 class OrderDTOFactory(factory.Factory):
