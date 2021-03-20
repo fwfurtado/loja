@@ -28,3 +28,10 @@ class TestOrder:
 
         assert len(order.items) == 0
         assert order.status == OrderStatus.PENDING
+
+    def test_should_return_status_paid(self):
+        order = OrderFactory.create()
+        assert order.status == OrderStatus.PENDING
+
+        order.paid()
+        assert order.status == OrderStatus.PAID

@@ -14,6 +14,10 @@ class OrderController:
         order = self.converter.convert(form)
         self.dao.persist(order)
 
+    def paid(self, order_id: int):
+        order = self.dao.find_one(order_id)
+        order.paid()
+
     def list(self):
         return self.dao.find_all()
 

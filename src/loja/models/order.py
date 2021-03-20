@@ -26,7 +26,7 @@ class Order:
     def add_item(self, item: OrderItem):
         self.__items.append(item)
 
-    def update_status_paid(self):
+    def paid(self):
         if self.__status != OrderStatus.PENDING:
             raise ValueError("Atualização inválida. Situação do pedido diferente de PENDENTE")
         self.__status = OrderStatus.PAID
