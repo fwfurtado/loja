@@ -1,5 +1,5 @@
 import pytest
-from loja.models.product import Product
+from src.loja.models.product import Product
 
 from tests.loja.factories.product import ProductFactory
 

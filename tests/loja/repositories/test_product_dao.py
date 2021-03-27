@@ -1,5 +1,5 @@
-from src.loja.repositories.product_dao import ProductDAO
-from tests.loja.factories.product_factory import ProductFactory
+from src.loja.repositories.product import ProductDAO
+from tests.loja.factories.product import ProductFactory
 
 
 class TestProductDAO:

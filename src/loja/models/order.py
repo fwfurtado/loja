@@ -7,19 +7,18 @@ from src.loja.models.order_item import OrderItem
 
 
 class OrderStatus(Enum):
-    PENDING = 'PENDING'
-    PAID = 'PAID'
-    SENT = 'SENT'
-    RECEIVED = 'RECEIVED'
-    CANCELLED = 'CANCELLED'
+    PENDING = "PENDING"
+    PAID = "PAID"
+    SENT = "SENT"
+    RECEIVED = "RECEIVED"
+    CANCELLED = "CANCELLED"
 
 
 class Order:
-
     def __init__(self, customer: Customer, id: int = None):
         self.__customer = customer
         self.__created_at = date.today()
-        self.__items = []
+        self.__items: List[OrderItem] = []
         self.__status = OrderStatus.PENDING
         self.id = id
 
@@ -28,7 +27,9 @@ class Order:
 
     def paid(self):
         if self.__status != OrderStatus.PENDING:
-            raise ValueError("Atualização inválida. Situação do pedido diferente de PENDENTE")
+            raise ValueError(
+                "Atualização inválida. Situação do pedido diferente de PENDENTE"
+            )
         self.__status = OrderStatus.PAID
 
     @property

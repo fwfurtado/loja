@@ -1,11 +1,9 @@
-from src.loja.models.order import Order
-from src.loja.repositories.order import OrderDAO
-from src.loja.dtos.order import OrderDTO
 from src.loja.converters.order import OrderConverter
+from src.loja.dtos.order import OrderDTO
+from src.loja.repositories.order import OrderDAO
 
 
 class OrderController:
-
     def __init__(self, dao: OrderDAO, converter: OrderConverter):
         self.dao = dao
         self.converter = converter
@@ -16,6 +14,10 @@ class OrderController:
 
     def paid(self, order_id: int):
         order = self.dao.find_one(order_id)
+
+        if not order:
+            raise ValueError("Order not found")
+
         order.paid()
 
     def list(self):

@@ -1,5 +1,5 @@
 import pytest
-from loja.models.address import Address
+from src.loja.models.address import Address
 
 
 class TestAddress:

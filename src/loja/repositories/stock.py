@@ -4,8 +4,8 @@ from src.loja.models.stock import Stock
 
 
 class StockDAO:
-    __DATABASE = dict()
-    __IDENTITY = 0
+    __DATABASE: Dict[int, Stock] = dict()
+    __IDENTITY: int = 0
 
     def persist(self, product: Stock):
         StockDAO.__IDENTITY += 1
