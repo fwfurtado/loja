@@ -15,7 +15,12 @@ class OrderStatus(Enum):
 
 
 class Order:
-    def __init__(self, customer: Customer, id: int = None, status: OrderStatus = OrderStatus.PENDING):
+    def __init__(
+        self,
+        customer: Customer,
+        id: int = None,
+        status: OrderStatus = OrderStatus.PENDING,
+    ):
         self.__customer = customer
         self.__created_at = date.today()
         self.__items: List[OrderItem] = []
@@ -34,7 +39,9 @@ class Order:
 
     def sent(self):
         if self.__status != OrderStatus.PAID:
-            raise ValueError("Atualização inválida. Situação do pedido diferente de Pago")
+            raise ValueError(
+                "Atualização inválida. Situação do pedido diferente de Pago"
+            )
         self.__status = OrderStatus.SENT
 
     @property
