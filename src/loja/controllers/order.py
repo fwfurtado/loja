@@ -20,6 +20,10 @@ class OrderController:
 
         order.paid()
 
+    def sent(self, order_id: int):
+        order = self.dao.find_one(order_id)
+        order.sent()
+
     def list(self):
         return self.dao.find_all()
 

@@ -1,7 +1,6 @@
 from unittest.mock import MagicMock
 
 import pytest
-import random
 from src.loja.models.order import OrderStatus
 from src.loja.controllers.order import OrderController
 from src.loja.converters.order import OrderConverter
@@ -65,3 +64,17 @@ class TestOrderController:
         controller.paid(order.id)
         assert order.status == OrderStatus.PAID
         assert order_dao.find_one.called
+
+        with pytest.raises(ValueError):
+            controller.paid(order.id)
+
+    def test_update_status_to_sent(self, controller, order_dao):
+        order = OrderFactory.create(status=OrderStatus.PAID)
+        order_dao.find_one.return_value = order
+
+        controller.sent(order.id)
+        assert order.status == OrderStatus.SENT
+        assert order_dao.find_one.called
+
+        with pytest.raises(ValueError):
+            controller.sent(order.id)
