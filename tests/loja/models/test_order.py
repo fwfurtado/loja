@@ -1,9 +1,7 @@
-from loja.models.customer import Customer
-from loja.models.order import Order
-from loja.models.order_item import OrderItem
-from loja.models.product import Product
-
+from src.loja.models.customer import Customer
+from src.loja.models.order import Order
 from src.loja.models.order import OrderStatus
+from src.loja.models.order_item import OrderItem
 from tests.loja.factories.order import OrderFactory
 from tests.loja.factories.product import ProductFactory
 

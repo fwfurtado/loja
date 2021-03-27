@@ -1,5 +1,3 @@
-import pytest
-
 from tests.loja.factories.address import AddressFactory
 from tests.loja.factories.customer import CustomerFactory
 

@@ -1,8 +1,7 @@
-from loja.models.stock import Stock
-from loja.models.product import Product
-from loja.repositories.stock_dao import StockDAO
+from src.loja.models.stock import Stock
+from src.loja.repositories.stock import StockDAO
 
-from tests.loja.factories.product_factory import ProductFactory
+from tests.loja.factories.product import ProductFactory
 
 
 class TestAddProductDAO:

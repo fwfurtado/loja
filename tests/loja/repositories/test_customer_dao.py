@@ -1,6 +1,6 @@
 
-from src.loja.repositories.customer_dao import CustomerDAO
-from tests.loja.factories.customer_factory import CustomerFactory
+from src.loja.repositories.customer import CustomerDAO
+from tests.loja.factories.customer import CustomerFactory
 
 
 class TestCustomerDAO:
