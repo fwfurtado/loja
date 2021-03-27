@@ -17,6 +17,10 @@ class CustomerController:
         self, customer_id: int, form: AddressDTO
     ):  # usamos form de formulario
         customer = self.dao.find_one(customer_id)
+
+        if not customer:
+            raise ValueError("Customer not found")
+
         address = self.address_converter.convert(form)
         customer.add_address(address)
 

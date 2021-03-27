@@ -14,6 +14,10 @@ class OrderController:
 
     def paid(self, order_id: int):
         order = self.dao.find_one(order_id)
+
+        if not order:
+            raise ValueError("Order not found")
+
         order.paid()
 
     def list(self):

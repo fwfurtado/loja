@@ -6,7 +6,7 @@ class Customer:
     def __init__(self, name: str, social_number: str, id: int = None):
         self.__name = name
         self.__social_number = social_number
-        self.__addresses = []
+        self.__addresses: List[Address] = []
         self.id = id
 
     @property

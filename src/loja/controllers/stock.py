@@ -22,4 +22,6 @@ class StockController:
 
     def withdraw(self, id: int, amount: int):
         stock = self.dao.find_one(id)
-        stock.remove(amount)
+
+        if stock:  # Nulo e 0 são avaliados como false. O restante é true
+            stock.remove(amount)

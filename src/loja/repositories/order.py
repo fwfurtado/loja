@@ -4,8 +4,8 @@ from src.loja.models.order import Order
 
 
 class OrderDAO:
-    __DATABASE = dict()
-    __IDENTITY = 0
+    __DATABASE: Dict[int, Order] = dict()
+    __IDENTITY: int = 0
 
     def persist(self, order: Order):
         OrderDAO.__IDENTITY += 1

@@ -5,8 +5,8 @@ from src.loja.models.customer import Customer
 
 
 class CustomerDAO:
-    __DATABASE = dict()
-    __IDENTITY = 0
+    __DATABASE: Dict[int, Customer] = dict()
+    __IDENTITY: int = 0
 
     def persist(self, customer: Customer):
         CustomerDAO.__IDENTITY += 1

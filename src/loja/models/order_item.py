@@ -1,3 +1,5 @@
+from typing import Optional
+
 from src.loja.models.product import Product
 
 
@@ -20,7 +22,7 @@ class OrderItem:
         return self.__product.name
 
     @property
-    def product_id(self) -> int:
+    def product_id(self) -> Optional[int]:
         return self.__product.id
 
     @property

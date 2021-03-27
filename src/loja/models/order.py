@@ -18,7 +18,7 @@ class Order:
     def __init__(self, customer: Customer, id: int = None):
         self.__customer = customer
         self.__created_at = date.today()
-        self.__items = []
+        self.__items: List[OrderItem] = []
         self.__status = OrderStatus.PENDING
         self.id = id
 
