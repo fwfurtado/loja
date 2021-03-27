@@ -6,7 +6,6 @@ from src.loja.repositories.product import ProductDAO
 
 
 class OrderConverter:
-
     def __init__(self, customer_dao: CustomerDAO, product_dao: ProductDAO):
         self.__customer_dao = customer_dao
         self.__product_dao = product_dao

@@ -1,6 +1,7 @@
 class Product:
-
-    def __init__(self, name: str, price: float, photo: str, description: str, id: int = None):
+    def __init__(
+        self, name: str, price: float, photo: str, description: str, id: int = None
+    ):
         if price <= 0:
             raise ValueError("Preço deve ser maior que zero")
         self.__name = name

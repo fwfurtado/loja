@@ -4,7 +4,6 @@ from src.loja.repositories.stock import StockDAO
 
 
 class StockController:
-
     def __init__(self, dao: StockDAO):
         self.dao = dao
 

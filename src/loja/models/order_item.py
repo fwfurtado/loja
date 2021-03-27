@@ -2,7 +2,6 @@ from src.loja.models.product import Product
 
 
 class OrderItem:
-
     def __init__(self, product: Product, quantity: int):
         self.__product = product
         self.__amount = product.price
