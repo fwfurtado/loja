@@ -14,12 +14,18 @@ class OrderStatus(Enum):
     RECEIVED = "RECEIVED"
     CANCELLED = "CANCELLED"
 
+
 class OrderPaymentType(Enum):
     ONLINE = "ONLINE"
     BANK_SLIP = "BANK_SLIP"
 
 class Order:
-    def __init__(self, customer: Customer, id: int = None, payment_type: str = OrderPaymentType.BANK_SLIP):
+    def __init__(
+        self,
+        customer: Customer,
+        id: int = None,
+        payment_type: str = OrderPaymentType.BANK_SLIP,
+    ):
         self.__customer = customer
         self.__created_at = date.today()
         self.__items: List[OrderItem] = []
@@ -32,7 +38,9 @@ class Order:
 
     def pending(self):
         if self.__status != OrderStatus.CREATED:
-            raise ValueError("Atualização inválida. Situação do pedido diferente de CREATED")
+            raise ValueError(
+                "Atualização inválida. Situação do pedido diferente de CREATED"
+            )
         self.__status = OrderStatus.PENDING
 
     def paid(self):
