@@ -3,8 +3,7 @@ from typing import List
 
 
 class Customer:
-
-    def __init__(self, name: str, social_number: str, id: int=None):
+    def __init__(self, name: str, social_number: str, id: int = None):
         self.__name = name
         self.__social_number = social_number
         self.__addresses: List[Address] = []

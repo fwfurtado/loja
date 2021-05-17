@@ -2,8 +2,6 @@ from src.loja.models.order import OrderPaymentType
 from src.loja.repositories.order import OrderDAO
 from src.loja.dtos.order import OrderDTO
 from src.loja.converters.order import OrderConverter
-from src.loja.dtos.order import OrderDTO
-from src.loja.repositories.order import OrderDAO
 from src.loja.infra.payment_client import PaymentClient
 
 

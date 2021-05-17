@@ -19,12 +19,13 @@ class OrderPaymentType(Enum):
     ONLINE = "ONLINE"
     BANK_SLIP = "BANK_SLIP"
 
+
 class Order:
     def __init__(
         self,
         customer: Customer,
         id: int = None,
-        payment_type: str = OrderPaymentType.BANK_SLIP,
+        payment_type: OrderPaymentType = OrderPaymentType.BANK_SLIP,
     ):
         self.__customer = customer
         self.__created_at = date.today()
