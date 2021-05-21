@@ -1,30 +1,17 @@
-class Product:
-    def __init__(
-        self, name: str, price: float, photo: str, description: str, id: int = None
-    ):
-        if price <= 0:
-            raise ValueError("Preço deve ser maior que zero")
-        self.__name = name
-        self.__price = price
-        self.__photo = photo
-        self.__description = description
-        self.id = id
+from datetime import datetime
+from sqlalchemy import Column, BigInteger, String, Numeric, DateTime
+from src.loja.infra.database import Base
+from typing import Optional
 
-    @property
-    def name(self) -> str:
-        return self.__name
 
-    @property
-    def price(self) -> float:
-        return self.__price
-
-    @property
-    def photo(self) -> str:
-        return self.__photo
-
-    @property
-    def description(self) -> str:
-        return self.__description
+class Product(Base):
+    __tablename__ = "products"
+    id: Optional[int] = Column(BigInteger, primary_key=True)
+    name: str = Column(String, nullable=False)
+    price: float = Column(Numeric, nullable=False)
+    photo: str = Column(String)
+    description: str = Column(String, nullable=False)
+    created_at: datetime = Column(DateTime, default=datetime.now, nullable=False)
 
     def __str__(self):
         return f"Product({self.name, self.price, self.photo, self.description})"
