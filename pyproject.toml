@@ -7,6 +7,9 @@ authors = ["Fernando <fwfurtado@gmail.com>"]
 [tool.poetry.dependencies]
 python = "^3.7"
 pydantic = {extras = ["dotenv"], version = "^1.8.2"}
+psycopg2-binary = "^2.8.6"
+SQLAlchemy = "^1.4.15"
+alembic = "^1.6.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2.4"
