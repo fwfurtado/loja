@@ -10,7 +10,7 @@ class CustomerController:
         self.address_converter = converter
 
     def new_customer(self, name: str, social_number: str):
-        customer = Customer(name, social_number)
+        customer = Customer(name=name, social_number=social_number)
         self.dao.persist(customer)
 
     def add_address(

@@ -21,7 +21,7 @@ def upgrade():
     op.create_table('product_stock',
     sa.Column('id', sa.BigInteger(), autoincrement=True, nullable=False),
     sa.Column('quantity', sa.BigInteger(), nullable=False),
-    sa.Column('product_id', sa.BigInteger(), nullable=True),
+    sa.Column('product_id', sa.BigInteger(), nullable=False),
     sa.ForeignKeyConstraint(['product_id'], ['products.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

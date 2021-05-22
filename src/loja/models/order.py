@@ -1,12 +1,14 @@
 from datetime import datetime
 from enum import Enum
-from typing import List
 
-from src.loja.models.customer import Customer
-from src.loja.models.order_item import OrderItem
-from sqlalchemy import Column, BigInteger, String, ForeignKey, DateTime, Enum as OrmENum
+from sqlalchemy import Column, BigInteger, ForeignKey, DateTime, Enum as OrmENum
 from sqlalchemy.orm import relationship
 from src.loja.infra.database import Base
+from src.loja.models.order_item import OrderItem
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from src.loja.models.customer import Customer  # noqa: F401
 
 
 class OrderStatus(Enum):
@@ -26,16 +28,19 @@ class OrderPaymentType(Enum):
 class Order(Base):
     __tablename__ = "orders"
 
-    id =  Column(BigInteger, primary_key=True, autoincrement=True)
-    customer_id = Column(BigInteger, ForeignKey("customers.id"))
+    id = Column(BigInteger, primary_key=True, autoincrement=True)
+    customer_id = Column(BigInteger, ForeignKey("customers.id"), nullable=False)
     customer = relationship("Customer")
-    payment_type = Column(OrmENum(OrderPaymentType), default=OrderPaymentType.BANK_SLIP, nullable=False)
+    payment_type = Column(
+        OrmENum(OrderPaymentType), default=OrderPaymentType.BANK_SLIP, nullable=False
+    )
     status = Column(OrmENum(OrderStatus), default=OrderStatus.PENDING, nullable=False)
-    items = relationship("OrderItem")
+    items = relationship("OrderItem",uselist=True)
     created_at = Column(DateTime, default=datetime.now, nullable=False)
 
     def add_item(self, item: OrderItem):
-        self.items.append(item)
+        item.amount = item.product.price
+        self.items.append(item)  # type: ignore
 
     def pending(self):
         if self.status != OrderStatus.CREATED:
@@ -53,4 +58,4 @@ class Order(Base):
 
     @property
     def total(self) -> float:
-        return sum([item.total for item in self.items])
+        return sum([item.total for item in self.items])  # type: ignore

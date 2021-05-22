@@ -15,7 +15,7 @@ class OrderConverter:
         if not customer:
             raise ValueError("Customer not found")
 
-        order = Order(customer)
+        order = Order(customer=customer)
         for item_dto in form.items:
             item = self.__to_order_item(item_dto)
             order.add_item(item)
@@ -27,4 +27,4 @@ class OrderConverter:
         if not product:
             raise ValueError("Product not found")
 
-        return OrderItem(product, form.quantity)
+        return OrderItem(product=product, quantity=form.quantity)

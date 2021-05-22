@@ -5,4 +5,9 @@ from src.loja.models.address import Address
 class AddressConverter:
     @staticmethod
     def convert(form: AddressDTO) -> Address:
-        return Address(form.street, form.number, form.zip_code, form.complement)
+        return Address(
+            street=form.street,
+            number=form.number,
+            zip_code=form.zip_code,
+            complement=form.complement,
+        )

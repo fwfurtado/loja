@@ -8,18 +8,15 @@ class TestStock:
 
         t_shirt = ProductFactory.create()
 
-        stock = Stock(t_shirt, 2)
+        stock = Stock(product=t_shirt, quantity=2)
 
-        assert t_shirt.name == stock.name
-
-        with pytest.raises(ValueError):
-            Stock(t_shirt, -2)
+        assert t_shirt.name == stock.product.name
 
     def test_should_decrease_the_quantity_of_stock(self):
 
         t_shirt = ProductFactory.create()
 
-        stock = Stock(t_shirt, 2)
+        stock = Stock(product=t_shirt, quantity=2)
         assert stock.quantity == 2
 
         stock.remove(1)
@@ -28,7 +25,7 @@ class TestStock:
     def test_should_raise_error_when_the_amount_exceed_quantity(self):
         t_shirt = ProductFactory.create()
 
-        stock = Stock(t_shirt, 2)
+        stock = Stock(product=t_shirt, quantity=2)
         assert stock.quantity == 2
 
         with pytest.raises(ValueError):

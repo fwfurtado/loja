@@ -25,11 +25,11 @@ def upgrade():
     )
     op.create_table('customer_addresses',
     sa.Column('id', sa.BigInteger(), autoincrement=True, nullable=False),
-    sa.Column('street', sa.String(), nullable=True),
-    sa.Column('number', sa.Integer(), nullable=True),
-    sa.Column('zip_code', sa.String(), nullable=True),
+    sa.Column('street', sa.String(), nullable=False),
+    sa.Column('number', sa.Integer(), nullable=False),
+    sa.Column('zip_code', sa.String(), nullable=False),
     sa.Column('complement', sa.String(), nullable=True),
-    sa.Column('customer_id', sa.BigInteger(), nullable=True),
+    sa.Column('customer_id', sa.BigInteger(), nullable=False),
     sa.ForeignKeyConstraint(['customer_id'], ['customers.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
