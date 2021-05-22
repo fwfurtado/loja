@@ -1,25 +1,16 @@
+from sqlalchemy import Column, BigInteger, String
+from sqlalchemy.orm import relationship
+from src.loja.infra.database import Base
 from src.loja.models.address import Address
-from typing import List
 
 
-class Customer:
-    def __init__(self, name: str, social_number: str, id: int = None):
-        self.__name = name
-        self.__social_number = social_number
-        self.__addresses: List[Address] = []
-        self.id = id
+class Customer(Base):
+    __tablename__ = "customers"
 
-    @property
-    def name(self) -> str:
-        return self.__name
-
-    @property
-    def social_number(self) -> str:
-        return self.__social_number
+    id = Column(BigInteger, primary_key=True, autoincrement=True)
+    name = Column(String, nullable=False)
+    social_number = Column(String, nullable=True)
+    addresses = relationship("Address")
 
     def add_address(self, address: Address):
-        self.__addresses.append(address)
-
-    @property
-    def addresses(self) -> List[Address]:
-        return self.__addresses
+        self.addresses.append(address)  # type: ignore

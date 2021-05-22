@@ -8,7 +8,7 @@ class StockController:
         self.dao = dao
 
     def new_product(self, product: Product, quantity: int):
-        new = Stock(product, quantity)
+        new = Stock(product=product, quantity=quantity)
         self.dao.persist(new)
 
     def list(self):

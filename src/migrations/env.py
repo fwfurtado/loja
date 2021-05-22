@@ -1,6 +1,11 @@
 from logging.config import fileConfig
 from src.loja.infra.database import Base, DATABASE_URL
 from src.loja.models.product import Product
+from src.loja.models.customer import Customer
+from src.loja.models.address import Address
+from src.loja.models.stock import Stock
+from src.loja.models.order import Order
+from src.loja.models.order_item import OrderItem
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 

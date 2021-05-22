@@ -1,10 +1,14 @@
-from datetime import date
+from datetime import datetime
 from enum import Enum
-from typing import List, Union
-from decimal import Decimal
 
-from src.loja.models.customer import Customer
+from sqlalchemy import Column, BigInteger, ForeignKey, DateTime, Enum as OrmENum
+from sqlalchemy.orm import relationship
+from src.loja.infra.database import Base
 from src.loja.models.order_item import OrderItem
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from src.loja.models.customer import Customer  # noqa: F401
 
 
 class OrderStatus(Enum):
@@ -21,53 +25,37 @@ class OrderPaymentType(Enum):
     BANK_SLIP = "BANK_SLIP"
 
 
-class Order:
-    def __init__(
-        self,
-        customer: Customer,
-        id: int = None,
-        payment_type: OrderPaymentType = OrderPaymentType.BANK_SLIP,
-    ):
-        self.__customer = customer
-        self.__created_at = date.today()
-        self.__items: List[OrderItem] = []
-        self.__status = OrderStatus.PENDING
-        self.id = id
-        self.payment_type = payment_type
+class Order(Base):
+    __tablename__ = "orders"
+
+    id = Column(BigInteger, primary_key=True, autoincrement=True)
+    customer_id = Column(BigInteger, ForeignKey("customers.id"), nullable=False)
+    customer = relationship("Customer")
+    payment_type = Column(
+        OrmENum(OrderPaymentType), default=OrderPaymentType.BANK_SLIP, nullable=False
+    )
+    status = Column(OrmENum(OrderStatus), default=OrderStatus.PENDING, nullable=False)
+    items = relationship("OrderItem", uselist=True)
+    created_at = Column(DateTime, default=datetime.now, nullable=False)
 
     def add_item(self, item: OrderItem):
-        self.__items.append(item)
+        item.amount = item.product.price
+        self.items.append(item)
 
     def pending(self):
-        if self.__status != OrderStatus.CREATED:
+        if self.status != OrderStatus.CREATED:
             raise ValueError(
                 "Atualização inválida. Situação do pedido diferente de CREATED"
             )
-        self.__status = OrderStatus.PENDING
+        self.status = OrderStatus.PENDING
 
     def paid(self):
-        if self.__status != OrderStatus.PENDING:
+        if self.status != OrderStatus.PENDING:
             raise ValueError(
                 "Atualização inválida. Situação do pedido diferente de PENDENTE"
             )
-        self.__status = OrderStatus.PAID
+        self.status = OrderStatus.PAID
 
     @property
-    def customer(self) -> Customer:
-        return self.__customer
-
-    @property
-    def created_at(self) -> date:
-        return self.__created_at
-
-    @property
-    def total(self) -> Union[Decimal, int]:
-        return sum([item.total for item in self.__items])
-
-    @property
-    def items(self) -> List[OrderItem]:
-        return self.__items
-
-    @property
-    def status(self) -> OrderStatus:
-        return self.__status
+    def total(self) -> float:
+        return sum([item.total for item in self.items])  # type: ignore
