@@ -10,7 +10,7 @@ class Customer(Base):
     id = Column(BigInteger, primary_key=True, autoincrement=True)
     name = Column(String, nullable=False)
     social_number = Column(String, nullable=True)
-    addresses = relationship("Address")
+    addresses = relationship("Address", uselist=True, cascade="save-update")
 
     def add_address(self, address: Address):
-        self.addresses.append(address)  # type: ignore
+        self.addresses.append(address)

@@ -35,7 +35,7 @@ class Order(Base):
         OrmENum(OrderPaymentType), default=OrderPaymentType.BANK_SLIP, nullable=False
     )
     status = Column(OrmENum(OrderStatus), default=OrderStatus.PENDING, nullable=False)
-    items = relationship("OrderItem", uselist=True)
+    items = relationship("OrderItem", uselist=True, cascade="save-update")
     created_at = Column(DateTime, default=datetime.now, nullable=False)
 
     def add_item(self, item: OrderItem):
