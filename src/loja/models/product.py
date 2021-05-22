@@ -1,8 +1,6 @@
 from datetime import datetime
 from sqlalchemy import Column, BigInteger, String, Numeric, DateTime
 from src.loja.infra.database import Base
-from typing import Optional
-from decimal import Decimal
 
 
 class Product(Base):
