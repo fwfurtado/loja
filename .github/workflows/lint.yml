@@ -22,4 +22,4 @@ jobs:
       - name: Black Check
         run: poetry run black --check src/loja
       - name: Mypy Check
-        run: poetry run mypy --config-file pyproject.toml src/loja
+        run: poetry run mypy --config-file mypy.ini src/loja
