@@ -1,23 +1,28 @@
-from typing import Dict, Optional
+from typing import List, Optional
 from src.loja.models.product import Product
+from sqlalchemy.orm import Session
 
 
 class ProductDAO:  # Criando a rotina que faz a interface para gravar dados no banco de dados
-    __DATABASE: Dict[int, Product] = dict()  # Dicionário será o nosso banco de dados
-    __IDENTITY: int = 0  # Referente ao ID Ex: Cadastro 1, 2, 3...
+    def __init__(self, session: Session):
+        self.__session = session
 
     def persist(self, product: Product):  # Gravar alguma informação no banco de dados
-        ProductDAO.__IDENTITY += 1  # Acrescentar um ID novo
-        product.id = ProductDAO.__IDENTITY
-        ProductDAO.__DATABASE[
-            ProductDAO.__IDENTITY
-        ] = product  # PAssando a informação para o banco de dados
+        if not product.id:
+            self.__session.add(product)
+        else:
+            self.__session.merge(product)
 
-    def find_all(self) -> Dict[int, Product]:  # Listar tudo que foi gravado
-        return ProductDAO.__DATABASE
+    def find_all(self) -> List[Product]:  # Listar tudo que foi gravado
+        return self.__session.query(Product).all()
 
     def find_one(self, id: int) -> Optional[Product]:  # Lista as informações de 1 ID
-        return ProductDAO.__DATABASE.get(id, None)
+        return self.__session.query(Product).filter(Product.id == id).first()
 
     def remove(self, id: int):  # Remove um ID
-        del ProductDAO.__DATABASE[id]
+        product = self.find_one(id)
+        if product:
+            self.__session.delete(product)
+        else:
+            raise ValueError("Produto não localizado")
+            # self.__session.query(Product).filter(Product.id == id).delete()

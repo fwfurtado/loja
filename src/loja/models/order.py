@@ -1,6 +1,7 @@
 from datetime import date
 from enum import Enum
-from typing import List
+from typing import List, Union
+from decimal import Decimal
 
 from src.loja.models.customer import Customer
 from src.loja.models.order_item import OrderItem
@@ -60,7 +61,7 @@ class Order:
         return self.__created_at
 
     @property
-    def total(self) -> float:
+    def total(self) -> Union[Decimal, int]:
         return sum([item.total for item in self.__items])
 
     @property

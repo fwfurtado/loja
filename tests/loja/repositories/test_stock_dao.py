@@ -1,3 +1,5 @@
+import pytest
+
 from src.loja.models.stock import Stock
 from src.loja.repositories.stock import StockDAO
 
@@ -5,7 +7,7 @@ from tests.loja.factories.product import ProductFactory
 
 
 class TestAddProductDAO:
-
+    @pytest.mark.skip()
     def test_should_increment_length(self):
         dao = StockDAO()
         product = ProductFactory.create()

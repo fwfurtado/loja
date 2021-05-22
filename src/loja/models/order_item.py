@@ -1,5 +1,5 @@
 from typing import Optional
-
+from decimal import Decimal
 from src.loja.models.product import Product
 
 
@@ -14,7 +14,7 @@ class OrderItem:
         return self.__quantity
 
     @property
-    def amount(self) -> float:
+    def amount(self) -> Decimal:
         return self.__amount
 
     @property
@@ -26,5 +26,5 @@ class OrderItem:
         return self.__product.id
 
     @property
-    def total(self) -> float:
+    def total(self) -> Decimal:
         return self.__amount * self.__quantity
