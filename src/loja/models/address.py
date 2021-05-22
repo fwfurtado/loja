@@ -1,27 +1,12 @@
-class Address:
-    def __init__(self, street: str, number: int, zip_code: str, complement: str):
-        if number is not None and number <= 0:
-            raise ValueError("Número inválido")
-        self.__street = street
-        self.__number = number
-        self.__zip_code = zip_code
-        self.__complement = complement
+from sqlalchemy import Column, String, Integer, BigInteger, ForeignKey
+from src.loja.infra.database import Base
 
-    @property
-    def street(self) -> str:
-        return self.__street
+class Address(Base):
+    __tablename__ = "customer_addresses"
 
-    @property
-    def number(self) -> int:
-        return self.__number
-
-    @property
-    def zip_code(self) -> str:
-        return self.__zip_code
-
-    @property
-    def complement(self) -> str:
-        return self.__complement
-
-    def __str__(self):
-        return f"Address({self.street, self.number, self.zip_code, self.complement})"
+    id = Column(BigInteger, primary_key=True)
+    street = Column(String, nullable=True)
+    number = Column(Integer, nullable=True)
+    zip_code = Column(String, nullable=True)
+    complement = Column(String)
+    customer_id = Column(BigInteger, ForeignKey("customers.id"))
