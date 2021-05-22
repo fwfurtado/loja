@@ -40,7 +40,7 @@ class Order(Base):
 
     def add_item(self, item: OrderItem):
         item.amount = item.product.price
-        self.items.append(item)  # type: ignore
+        self.items.append(item)
 
     def pending(self):
         if self.status != OrderStatus.CREATED:
