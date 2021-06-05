@@ -24,8 +24,7 @@ class OrderDAO:
     def remove(self, id: int):
         self.__session.query(Order).filter(Order.id == id).delete()
 
-    def __find_with_join(self) -> Query[Order]:
-        return (
-            self.__session.query(Order)
-            .join(OrderItem, Order.id == OrderItem.order_id)
+    def __find_with_join(self) -> Query:
+        return self.__session.query(Order).join(
+            OrderItem, Order.id == OrderItem.order_id
         )
