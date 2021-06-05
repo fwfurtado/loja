@@ -1,23 +1,24 @@
 # Data Access Object
-from typing import Dict, Optional
-
+from typing import List, Optional
 from src.loja.models.customer import Customer
+from sqlalchemy.orm import Session
 
 
 class CustomerDAO:
-    __DATABASE: Dict[int, Customer] = dict()
-    __IDENTITY: int = 0
+    def __init__(self, session: Session):
+        self.__session = session
 
     def persist(self, customer: Customer):
-        CustomerDAO.__IDENTITY += 1
-        customer.id = CustomerDAO.__IDENTITY
-        CustomerDAO.__DATABASE[CustomerDAO.__IDENTITY] = customer
+        if not customer.id:
+            self.__session.add(customer)
+        else:
+            self.__session.merge(customer)
 
-    def find_all(self) -> Dict[int, Customer]:
-        return CustomerDAO.__DATABASE
+    def find_all(self) -> List[Customer]:
+        return self.__session.query(Customer).all()
 
     def find_one(self, id: int) -> Optional[Customer]:
-        return CustomerDAO.__DATABASE.get(id, None)
+        return self.__session.query(Customer).filter(Customer.id == id).first()
 
     def remove(self, id: int):
-        del CustomerDAO.__DATABASE[id]
+        self.__session.query(Customer).filter(Customer.id == id).delete()

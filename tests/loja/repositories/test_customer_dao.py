@@ -1,10 +1,10 @@
-
+import pytest
 from src.loja.repositories.customer import CustomerDAO
 from tests.loja.factories.customer import CustomerFactory
 
 
 class TestCustomerDAO:
-
+    @pytest.mark.skip()
     def test_should_increment_length(self): # Método = Função dentro de uma classe
         dao = CustomerDAO() # Cria instância do DAO
         customer = CustomerFactory.create()

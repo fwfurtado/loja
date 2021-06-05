@@ -1,21 +1,24 @@
 # Data Access Object
-from typing import Dict, Optional
+from typing import List, Optional
 from src.loja.models.stock import Stock
+from sqlalchemy.orm import Session
 
 
 class StockDAO:
-    __DATABASE: Dict[int, Stock] = dict()
-    __IDENTITY: int = 0
+    def __init__(self, session: Session):
+        self.__session = session
 
     def persist(self, product: Stock):
-        StockDAO.__IDENTITY += 1
-        StockDAO.__DATABASE[StockDAO.__IDENTITY] = product
+        if not product.id:
+            self.__session.add(product)
+        else:
+            self.__session.merge(product)
 
-    def find_all(self) -> Dict[int, Stock]:
-        return StockDAO.__DATABASE
+    def find_all(self) -> List[Stock]:
+        return self.__session.query(Stock).all()
 
     def find_one(self, id: int) -> Optional[Stock]:
-        return StockDAO.__DATABASE.get(id, None)
+        return self.__session.query(Stock).filter(Stock.id == id).first()
 
     def remove(self, id: int):
-        del StockDAO.__DATABASE[id]
+        self.__session.query(Stock).filter(Stock.id == id).delete()
